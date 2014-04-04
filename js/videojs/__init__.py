@@ -1,6 +1,12 @@
-from fanstatic import Library, Resource
+from fanstatic import Library, Resource, Group
 
 library = Library('video.js', 'resources')
+
+videojs_js = Resource(
+    library, 'js/video.js', minified='js/video.min.js')
+
+videojs_css = Resource(library, 'css/video-js.css')
+
 
 def render_shockwave_url(url):
     return '''
@@ -8,13 +14,10 @@ def render_shockwave_url(url):
             videojs.options.flash.swf = '%s';
         </script>''' % url
 
-videojs_shockwave = fanstatic.Resource(
-    library, 'swf/video-js.swf', renderer=render_shockwave_url)
+# Dependency, in order to get the path to the SWF to work.
+videojs_shockwave = Resource(
+    library, 'swf/video-js.swf',
+    depends=[videojs_js],
+    renderer=render_shockwave_url)
 
-videojs_css = fanstatic.Resource(library, 'css/video-js.css')
-
-videojs = fanstatic.Resource(library, 'js/video.js',
-    minified='js/video.min.js',
-    depends=[
-        videojs_shockwave,
-        videojs_css])
+videojs = Group(depends=[videojs_js, videojs_css, videojs_shockwave])
