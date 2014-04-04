@@ -3,3 +3,8 @@ syntax:glob
 *.pyc
 *.pyo
 *.swp
+*.egg-info
+bin
+parts
+develop-eggs
+.installed.cfg
