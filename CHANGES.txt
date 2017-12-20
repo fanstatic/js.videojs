@@ -1,10 +1,10 @@
 CHANGES
 *******
 
-5.13.3 (unreleased)
-===================
+6.6.0 (unreleased)
+==================
 
-- Nothing changed yet.
+- Update to v6.6.0
 
 
 5.13.2 (2016-11-21)
