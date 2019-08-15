@@ -11,34 +11,28 @@ videojs_js = Resource(
 videojs_js_novtt = Resource(
     library, 'alt/video.novtt.js', minified='alt/video.novtt.min.js')
 
-videojs_js_ie8 = Resource(
-    library, 'ie8/videojs-ie8.js', minified='ie8/videojs-ie8.min.js')
+# Video.js will be bundling VHS by default for ease of use for new users.
+# However, some people don’t want VHS or are using another plugin.
+# For this, we have a separate build of Video.js which doesn’t include VHS.
+# https://blog.videojs.com/introducing-video-js-http-streaming-vhs/
+videojs_core_js = Resource(
+    library, 'alt/video.core.js', minified='alt/video.core.min.js')
+
+videojs_core_js_novtt = Resource(
+    library, 'alt/video.core.novtt.js', minified='alt/video.core.novtt.min.js')
 
 videojs_css = Resource(library, 'video-js.css', minified='video-js.min.css')
 
-
-def render_shockwave_url(url):
-    return '''
-        <script type="text/javascript">
-            videojs.options.flash.swf = '%s';
-        </script>''' % url
-
-# Dependency, in order to get the path to the SWF to work.
-videojs_shockwave = Resource(
-    library, 'video-js.swf',
-    depends=[videojs_js],
-    renderer=render_shockwave_url)
-
-videojs = Group(depends=[videojs_js, videojs_css, videojs_shockwave])
+videojs = Group(depends=[videojs_js, videojs_css])
 
 videojs_novtt = Group(
     depends=[
         videojs_js_novtt,
-        videojs_css,
-        videojs_shockwave])
+        videojs_css])
 
-videojs_ie8 = Group(
+videojs_core = Group(depends=[videojs_core_js, videojs_css])
+
+videojs_core_novtt = Group(
     depends=[
-        videojs_js_ie8,
-        videojs_css,
-        videojs_shockwave])
+        videojs_core_js_novtt,
+        videojs_css])

@@ -1,10 +1,10 @@
 CHANGES
 *******
 
-6.6.1 (unreleased)
+7.5.5 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Update to v7.5.5
 
 
 6.6.0 (2017-12-20)
