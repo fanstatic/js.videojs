@@ -4,7 +4,7 @@ CHANGES
 7.5.5 (unreleased)
 ==================
 
-- Update to v7.5.5
+- Update to v7.5.5. test.
 
 
 6.6.0 (2017-12-20)
