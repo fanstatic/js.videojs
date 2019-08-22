@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from fanstatic import Library, Resource, Group
 
 library = Library('video.js', 'resources')
